@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
-
+import { COLORS } from '../components/Colors';
 import { Link } from "react-router-dom";
 
-import bellAcitve from "../assets/nav/bellActive.png";
+import bellActive from "../assets/nav/bellActive.png";
 import bellDisable from "../assets/nav/bellDisable.png";
 import boardActive from "../assets/nav/boardActive.png";
 import boardDisable from "../assets/nav/boardDisable.png";
@@ -12,42 +11,43 @@ import homeActive from "../assets/nav/homeActive.svg";
 import homeDisable from "../assets/nav/homeDisable.svg";
 
 const NavigationWrapper = styled.div`
-  display: flex;
-  height: 48px;
+    display: flex;
+    height: 48px;
+    border-top: 1px solid ${COLORS.grey_light};
+    background-color: white;
 
-  .icon-container {
-    width: 100%;
-    height: 100%;
-
-    img {
-      width: 24px;
-      height: 24px;
+    .navigation-item {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 24px;
+            height: 24px;
+        }
     }
-  }
 `;
 
-const BottomNavigaiton = ({ activeCategory }) => {
-  const homeIcon = activeCategory === 1 ? homeActive : homeDisable;
-  const boardIcon = activeCategory === 2 ? boardActive : boardDisable;
-  const bellIcon = activeCategory === 3 ? bellAcitve : bellDisable;
 
-  return (
+const BottomNavigation = ({ activeNum }) => {
+    const homeIcon = activeNum === 1 ? homeActive : homeDisable;
+    const boardIcon = activeNum === 2 ? boardActive : boardDisable;
+    const bellIcon = activeNum === 3 ? bellActive : bellDisable;
+
+    return (
     <NavigationWrapper>
-      <Link className="icon-container arrange-center" to="/">
-        <img src={homeIcon} alt="홈 아이콘" />
-      </Link>
-      <Link className="icon-container arrange-center" to="/board">
-        <img src={boardIcon} alt="게시판 아이콘" />
-      </Link>
-      <Link className="icon-container arrange-center" to="/alarm">
-        <img src={bellIcon} alt="알림 아이콘" />
-      </Link>
+        <Link className="navigation-item" to="/">
+            <img src={homeIcon} alt="main page" />
+        </Link>
+        <Link className="navigation-item" to="/board">
+            <img src={boardIcon} alt="board page" />
+        </Link>
+        <Link className="navigation-item" to="/alarm">
+            <img src={bellIcon} alt="alert page" />
+        </Link>
     </NavigationWrapper>
-  );
+    );
 };
 
-BottomNavigaiton.propTypes = {
-  activeCategory: PropTypes.number.isRequired,
-};
-
-export default BottomNavigaiton;
+export default BottomNavigation;

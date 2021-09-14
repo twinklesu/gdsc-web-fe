@@ -7,7 +7,7 @@ const Index = () => {
     return (
         <div>
             <div className="bottom-navigation">
-                <BottomNavigation activeNum={1} />
+                <BottomNavigation activeNum={2} />
             </div>
         </div>
     );
