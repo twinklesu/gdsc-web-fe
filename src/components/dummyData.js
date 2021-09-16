@@ -114,7 +114,7 @@ export const dummyMessage = [
   {
     nick: "익명",
     date: "09/10 19:06",
-    title: "GDSC 모집 기간이 지났기 때문에 지금은 지원이 힘들 것 같습니다.",
+    title: "GDSC 모집 기간이 지났기 때문에 지금은 지원이 힘들 것 같습니다람쥐는 도토리를 좋아해.",
     id: "2",
   },
   {

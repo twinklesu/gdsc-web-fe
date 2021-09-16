@@ -8,3 +8,9 @@
 - `<a>` 대신 `<Link>` 사용
 - 주소 설정은 `App.js`에서 `<Route exact path>`로
 - html 안에서 js 쓰려면 `{}` (jsx)
+
+## 210917
+
+- return을 빼먹지 말자
+- 주소 지정해줄 때 `{\`/{변수}\`}`
+- css: 가로로 나열할 때 `flex`, 세로로 나열할 때 `block`
