@@ -4,7 +4,7 @@ import styled from "styled-components";
 import TopNavigation from "../../layout/TopNavigation";
 import BottomNavigation from "../../layout/BottomNavigation";
 import { dummyMessage } from "../../components/dummyData";
-import MessageWrapper from "./MessageWrapper";
+import MessageWrapper from "./components/MessageWrapper";
 
 
 const Index = () => {
