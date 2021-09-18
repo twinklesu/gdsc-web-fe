@@ -24,9 +24,9 @@ const MsgBoxNavigation = styled.div`
             font-size: 25px;
         }
         .icon-wrapper {
-            margin-left: 320px;
+            margin-left: 310px;
             img {
-                margin-left: 10px;
+                margin-left: 20px;
                 width: 24px;
                 height: 24px;
             }

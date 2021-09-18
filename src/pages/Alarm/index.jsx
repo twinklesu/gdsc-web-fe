@@ -6,6 +6,10 @@ import BottomNavigation from "../../layout/BottomNavigation";
 import { dummyMessage } from "../../components/dummyData";
 import MessageWrapper from "./components/MessageWrapper";
 
+const ContentWrapper = styled.div`
+    margin-top: 70px;
+    margin-bottom: 50px;
+`;
 
 const Index = () => {
     return (
@@ -13,9 +17,12 @@ const Index = () => {
             <div className="top-navigation">
                 <TopNavigation activePage={"messageBox"}/>
             </div>
-            <div className="check-message">
-                <MessageWrapper messageList={dummyMessage} />
-            </div>
+            <ContentWrapper>
+                <div className="check-message">
+                    <MessageWrapper messageList={dummyMessage} />
+                </div>
+            </ContentWrapper>
+
             <div className="bottom-navigation">
                 <BottomNavigation activeNum={3} />
             </div>

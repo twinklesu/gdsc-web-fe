@@ -17,3 +17,8 @@
 
 ## 210917
 - Route의 `:no`를 쓸줄 몰라서 쪽지 디테일 다음에 하기로 함
+
+## 210918
+- div 안의 요소 가운데 정렬할 때 `justify-content: center`
+- index에서 content 들어갈 부분 위, 아래 margin 주기 (navigation에 먹히지 않도록)
+
