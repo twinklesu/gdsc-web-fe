@@ -6,7 +6,7 @@ export const dummyMyboard = [
   },
   {
     category: "비밀게시판",
-    title: "GDSC 리더님 넘 멋있는것 같아요 ㅠㅠ",
+    title: "GDSC 리더님 넘 멋있는것 같아요 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ",
     isNew: true,
   },
   {

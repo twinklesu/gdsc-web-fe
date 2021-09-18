@@ -21,4 +21,5 @@
 ## 210918
 - div 안의 요소 가운데 정렬할 때 `justify-content: center`
 - index에서 content 들어갈 부분 위, 아래 margin 주기 (navigation에 먹히지 않도록)
+- 양 끝으로 몰고 싶을 때 `justify-content: space-between`
 
