@@ -58,7 +58,7 @@ export const dummyHot = [
     comments: 20,
   },
   {
-    title: "ITM 너무 좋은 학과인듯",
+    title: "ITM 너무 좋은 학과인듯 박수빈 ITM 8대 부짱>< 우리 학생회이름 인앤아웃",
     date: "15:30",
     like: 20,
     comments: 10,

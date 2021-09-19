@@ -7,8 +7,8 @@ import { dummyMessage } from "../../components/dummyData";
 import MessageWrapper from "./components/MessageWrapper";
 
 const ContentWrapper = styled.div`
-    margin-top: 70px;
-    margin-bottom: 50px;
+    padding-top: 70px;
+    padding-bottom: 60px;
 `;
 
 const Index = () => {

@@ -114,3 +114,13 @@ input {
   color: #C9CDD2;
   font-size: 14px;
 }
+.like-num {
+  margin-left: 5px;
+  color: #c62917;
+  font-size: 14px;
+}
+.comments-num {
+  margin-left: 5px;
+  color: #0ca5af;
+  font-size: 14px;
+}

@@ -6,12 +6,13 @@ import TopNavigation from "../../layout/TopNavigation";
 import TopGuide from "./components/TopGuide";
 import MyBoard from "./components/MyBoard";
 import RealTimeBoard from "./components/RealTimeBoard";
+import Popular from "./components/Popular";
 
-import { dummyMessage, dummyMyboard, dummyRealtime } from "../../components/dummyData";
+import { dummyMyboard, dummyRealtime, dummyHot } from "../../components/dummyData";
 
 const ContentWrapper = styled.div`
-    margin-top: 70px;
-    margin-bottom: 50px;
+    padding-top: 70px;
+    padding-bottom: 60px;
 `;
 
 const Index = () => {
@@ -29,6 +30,9 @@ const Index = () => {
                 </div>
                 <div className="real-time-board">
                     <RealTimeBoard contents={dummyRealtime}/>
+                </div>
+                <div className="popular-board">
+                    <Popular contents={dummyHot}/>
                 </div>
             </ContentWrapper>
             <div className="bottom-navigation">
