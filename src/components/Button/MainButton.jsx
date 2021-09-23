@@ -15,7 +15,7 @@ const CustomButton = styled.button`
 
 const MainButton = ({ text, onClick }) => {
   return (
-    <CustomButton onClick={onClick} className="arrage-center-center">
+    <CustomButton onClick={onClick} className="arrange-center-center">
       {text}
     </CustomButton>
   );

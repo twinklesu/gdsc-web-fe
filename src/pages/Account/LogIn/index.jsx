@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { COLORS } from "../../../components/Colors";
 
 import MainLogo from "../../../assets/logo/logo.png";
 import MainButton from "../../../components/Button/MainButton";
-import CheckInput from "./CheckInput";
+import MainInput from "../../../components/Input/MainInput";
 
 const LoginWrapper = styled.div`
   display: block;
@@ -30,18 +30,57 @@ const LoginWrapper = styled.div`
   }
 `;
 
+const CheckInput = () => {
+  const [isInput, setIsInput] = useState(false);
+
+  const onFocus = (e) => {
+    setIsInput(true);
+    console.log("on Focus");
+  };
+
+  const onBlur = (e) => {
+    setIsInput(false);
+  };
+
+  return (
+    <div>
+      {!isInput && (
+        <div>
+          <img src={MainLogo} alt="에브리타임 로고" />
+          <p>대학 생활을 더 편리하고 즐겁게</p>
+          <h1>에브리타임</h1>
+        </div>
+      )}
+      <MainInput
+        type="text"
+        // value={id}
+        // onChange={onChangeId}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        placeholder="아이디"
+      />
+      <MainInput
+        type="password"
+        // value={pw}
+        // onChange={onChangePw}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        placeholder="비밀번호"
+      />
+      <MainButton text={"에브리타임 로그인"} onClick={() => alert("로그인")} />
+      {!isInput && (
+        <div className="to-join-button">
+          <Link to="/join">회원가입</Link>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Index = () => {
   return (
     <LoginWrapper>
-      <img src={MainLogo} alt="에브리타임 로고" />
-      <p>대학 생활을 더 편리하고 즐겁게</p>
-      <h1>에브리타임</h1>
-      <CheckInput placeholder={"아이디"} />
-      <CheckInput placeholder={"비밀번호"} />
-      <MainButton text={"에브리타임 로그인"} onClick={() => alert("로그인")} />
-      <div className="to-join-button">
-        <Link to="/join">회원가입</Link>
-      </div>
+      <CheckInput />
     </LoginWrapper>
   );
 };
