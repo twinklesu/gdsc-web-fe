@@ -6,6 +6,7 @@ import profileImg from "../../assets/img/temp.png";
 import { COLORS } from "../../components/Colors";
 import { Link } from "react-router-dom";
 import QuitModal from "./components/QuitModal";
+import TopNavigation from "../../layout/TopNavigation";
 
 const MyPageWrapper = styled.div`
   display: block;
@@ -50,6 +51,7 @@ const AccountInfo = styled.div`
 const Index = () => {
   return (
     <div>
+      <TopNavigation activePage="myPage" />
       <MyPageWrapper>
         <div className="board-wrapper">
           <img src={profileImg} />
