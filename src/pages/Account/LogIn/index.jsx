@@ -32,39 +32,46 @@ const LoginWrapper = styled.div`
 
 const CheckInput = () => {
   const [isInput, setIsInput] = useState(false);
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
 
-  const onFocus = (e) => {
-    setIsInput(true);
-    console.log("on Focus");
+  const onChangeId = (e) => {
+    setId(e.target.value);
   };
 
-  const onBlur = (e) => {
-    setIsInput(false);
+  const onChangePw = (e) => {
+    setPw(e.target.value);
+  };
+
+  const handleFocus = (e) => {
+    if (isInput) {
+      console.log("false");
+      setIsInput(false); // 최초에 false였으니까..
+    } else {
+      console.log("true");
+      setIsInput(true);
+    }
   };
 
   return (
     <div>
-      {!isInput && (
-        <div>
-          <img src={MainLogo} alt="에브리타임 로고" />
-          <p>대학 생활을 더 편리하고 즐겁게</p>
-          <h1>에브리타임</h1>
-        </div>
-      )}
+      <div>
+        <img src={MainLogo} alt="에브리타임 로고" />
+        <p>대학 생활을 더 편리하고 즐겁게</p>
+        <h1>에브리타임</h1>
+      </div>
       <MainInput
         type="text"
-        // value={id}
-        // onChange={onChangeId}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        value={id}
+        onChange={onChangeId}
+        handleFocus={handleFocus}
         placeholder="아이디"
       />
       <MainInput
         type="password"
-        // value={pw}
-        // onChange={onChangePw}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        value={pw}
+        onChange={onChangePw}
+        handleFocus={handleFocus}
         placeholder="비밀번호"
       />
       <MainButton text={"에브리타임 로그인"} onClick={() => alert("로그인")} />

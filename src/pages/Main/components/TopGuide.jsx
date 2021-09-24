@@ -36,34 +36,57 @@ const LinkWrapper = styled.div`
   }
 `;
 
+const linkItems = [
+  {
+    text: "팀블로그",
+    to: "https://gdsc-seoultech.github.io",
+  },
+  {
+    text: "구글",
+    to: "https://google.com",
+  },
+  {
+    text: "학교",
+    to: "https://seoultech.ac.kr",
+  },
+  {
+    text: "포털",
+    to: "https://portal.seoultech.ac.kr",
+  },
+];
+
+const LinkItem = ({ text, to }) => {
+  const mapImg = () => {
+    switch (text) {
+      case "팀블로그":
+        return gdsc;
+      case "구글":
+        return google;
+      case "학교":
+        return school;
+      case "포털":
+        return notice;
+      default:
+        return google;
+    }
+  };
+
+  return (
+    <a href={to} target="_blank">
+      <div class="img-wrapper">
+        <img src={mapImg()} />
+      </div>
+      <p>{text}</p>
+    </a>
+  );
+};
+
 const TopGuide = () => {
   return (
     <LinkWrapper>
-      <a href="https://gdsc-seoultech.github.io" target="_blank">
-        <div class="img-wrapper">
-          <img src={gdsc} />
-        </div>
-        <p>팀</p>
-        <p>블로그</p>
-      </a>
-      <a href="https://google.com" target="_blank">
-        <div class="img-wrapper">
-          <img src={google} />
-        </div>
-        <p>구글</p>
-      </a>
-      <a href="https://seoultech.ac.kr" target="_blank">
-        <div class="img-wrapper">
-          <img src={school} />
-        </div>
-        <p>학교</p>
-      </a>
-      <a href="https://portal.seoultech.ac.kr" target="_blank">
-        <div class="img-wrapper">
-          <img src={notice} />
-        </div>
-        <p>공지</p>
-      </a>
+      {linkItems.map((item) => (
+        <LinkItem text={item.text} to={item.to} />
+      ))}
     </LinkWrapper>
   );
 };

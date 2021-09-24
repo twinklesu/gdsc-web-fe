@@ -7,6 +7,7 @@ import Alarm from "./pages/Alarm";
 import MessageDetailWrapper from "./pages/Alarm/components/MessageDetailWrapper";
 import Join from "./pages/Account/Join";
 import LogIn from "./pages/Account/LogIn";
+import MyPage from "./pages/Mypage";
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
         <Route exact path="/alarm/:no" component={MessageDetailWrapper} />
         <Route exact path="/join" component={Join} />
         <Route exact path="/login" component={LogIn} />
+
+        <Route exact path="/myPage" component={MyPage} />
       </Switch>
     </BrowserRouter>
   );
