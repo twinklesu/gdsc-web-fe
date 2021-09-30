@@ -103,6 +103,8 @@ textarea {
 }
 input {
   caret-color: #c62917;
+  all: unset;
+  cursor: auto;
 }
 
 .nickname {
@@ -111,7 +113,7 @@ input {
 }
 
 .date {
-  color: #C9CDD2;
+  color: #c9cdd2;
   font-size: 14px;
 }
 .like-num {

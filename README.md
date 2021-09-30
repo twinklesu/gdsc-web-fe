@@ -57,3 +57,31 @@
   클릭을 해보면서 state가 어떻게 변하는지 관찰해 볼 수 있었다.
 
 - `styled.div`는 `div`뿐 만 아니라 `a`나 `span`등 여러가지가 가능
+
+### 210930
+
+- 처음으로 layout을 좀 layout답게 썼다고 말할 수 있을 것 같다. 마이페이지의 TopNavigation이 다 좌측엔 페이지 이름, 우측엔 x 버튼 형태
+- 페이지 이름을 props로 넘겨 사용했다
+
+![](https://images.velog.io/images/twinklesu914/post/5486ad85-16fc-4734-8012-a8394701984a/image.png)
+
+이렇게 현재 페이지 이름을 넘겨주면, TopNavigation에서는
+
+![](https://images.velog.io/images/twinklesu914/post/2ea95634-f19a-4874-9085-1d48ad9c36ae/image.png)
+
+페이지별로 매핑을 해주고 (매핑이 좀 비효율적 방법으로 된 것 같긴한데,, 전에 짜둔부분이라 그냥 맞춰서 했다...ㅎ..)
+
+![](https://images.velog.io/images/twinklesu914/post/a444ff6c-8389-4173-9957-92c2d3e50082/image.png)
+
+페이지 이름과 x를 누를시 어느 페이지로 이동할지 알려줬다.
+
+- 그리고 mypage 하위의 라우팅을
+
+```
+  <Route exact path="/mypage" component={MyPage} />
+  <Route exact path="/mypage/updateNickname" component={UpdateNickname} />
+  <Route exact path="/mypage/auth" component={Auth} />
+  <Route exact path="/mypage/auth/detail" component={AuthDetail} />
+```
+
+이런식으로 해서.... 너무 비효율적으로 mypage를 반복적으로 적어줬는데.. 더 좋은 방법이 있을 것 같다. 내일 찾아봐야지!

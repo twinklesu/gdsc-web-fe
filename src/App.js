@@ -8,6 +8,9 @@ import MessageDetailWrapper from "./pages/Alarm/components/MessageDetailWrapper"
 import Join from "./pages/Account/Join";
 import LogIn from "./pages/Account/LogIn";
 import MyPage from "./pages/Mypage";
+import UpdateNickname from "./pages/Mypage/UpdateNickname";
+import Auth from "./pages/Mypage/Auth";
+import AuthDetail from "./pages/Mypage/AuthDatail";
 
 const App = () => {
   return (
@@ -17,10 +20,13 @@ const App = () => {
         <Route exact path="/board" component={Board} />
         <Route exact path="/alarm" component={Alarm} />
         <Route exact path="/alarm/:no" component={MessageDetailWrapper} />
-        <Route exact path="/join" component={Join} />
+        <Route exact path="/signup" component={Join} />
         <Route exact path="/login" component={LogIn} />
 
-        <Route exact path="/myPage" component={MyPage} />
+        <Route exact path="/mypage" component={MyPage} />
+        <Route exact path="/mypage/updateNickname" component={UpdateNickname} />
+        <Route exact path="/mypage/auth" component={Auth} />
+        <Route exact path="/mypage/auth/detail" component={AuthDetail} />
       </Switch>
     </BrowserRouter>
   );

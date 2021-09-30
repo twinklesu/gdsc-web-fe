@@ -66,12 +66,18 @@ const Index = () => {
         <div className="board-wrapper">
           <div className="account-info">
             <h1>계정</h1>
-            <p className="move-to">학교 인증</p>
-            <p className="move-to">닉네임 변경</p>
+            <Link to="/mypage/auth">
+              <p className="move-to">학교 인증</p>
+            </Link>
+            <Link to="/mypage/updateNickname">
+              <p className="move-to">닉네임 변경</p>
+            </Link>
             <div className="move-to">
               <QuitModal text="회원 탈퇴" />
             </div>
-            <p className="move-to">로그아웃</p>
+            <p className="move-to" onClick={() => alert("로그아웃")}>
+              로그아웃
+            </p>
           </div>
         </div>
       </AccountInfo>
