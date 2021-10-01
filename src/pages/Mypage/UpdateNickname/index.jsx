@@ -4,9 +4,18 @@ import styled from "styled-components";
 import TopNavigation from "../../../layout/TopNavigation";
 import MainButton from "../../../components/Button/MainButton";
 import MainInput from "../../../components/Input/MainInput";
+import { COLORS } from "../../../components/Colors";
 
 const MainWrapper = styled.div`
   display: block;
+  .title {
+    font-size: 12px;
+    color: ${COLORS.grey_600};
+  }
+  .input-wrapper {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 const Index = () => {
@@ -28,7 +37,7 @@ const Index = () => {
     <MainWrapper>
       <TopNavigation activePage="updateNick" />
       <div className="main">
-        <h1 className="title">닉네임 입력</h1>
+        <h1 className="title">닉네임</h1>
         <div className="input-wrapper">
           <MainInput
             value={nickname}
@@ -36,7 +45,9 @@ const Index = () => {
             onChange={onChangeNickname}
             placeholder="변경할 닉네임을 입력해주세요"
           />
-          {isError && <p>닉네임은 최소 두글자입니다</p>}
+          {isError && (
+            <p className="input-warning">닉네임은 최소 두글자입니다</p>
+          )}
         </div>
         <MainButton text={"닉네임 설정"} onClick={() => alert("닉네임 설정")} />
       </div>

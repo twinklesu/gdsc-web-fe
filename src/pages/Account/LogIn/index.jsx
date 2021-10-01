@@ -77,7 +77,7 @@ const CheckInput = () => {
       <MainButton text={"에브리타임 로그인"} onClick={() => alert("로그인")} />
       {!isInput && (
         <div className="to-join-button">
-          <Link to="/join">회원가입</Link>
+          <Link to="/signup">회원가입</Link>
         </div>
       )}
     </div>
