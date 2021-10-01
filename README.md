@@ -47,14 +47,25 @@
 - `<input>`의 `onBlur`과 `onFocus`를 사용해 봄
   ` const [isInput, setIsInput] = useState(false);` state 값을 이렇게 최초에 false로 주고,
 
-  ![](https://images.velog.io/images/twinklesu914/post/4a606e3f-28bc-490d-ac88-6252a3664c6d/image.png)
+```javascript
+// Login/index.jsx
+const handleFocus = (e) => {
+  if (isInput) {
+    console.log("false");
+    setIsInput(false); // 최초에 false였으니까..
+  } else {
+    console.log("true");
+    setIsInput(true);
+  }
+};
+```
 
-  `onBlur`와 `onFocus` 모두 `handleFocus`가 핸들링 하도록 했다. 최초 값 (focus 없음)이 false이기 때문에 input 창을 누르면, else를 통해 true가 되고, 다시 focus를 잃으면 onBlur가 해당 함수를 호출하면서 false로 만든다.  
-   감이 잘 오지 않아서 `console.log()`를 통해 값을 찍어 봤다.
+`onBlur`와 `onFocus` 모두 `handleFocus`가 핸들링 하도록 했다. 최초 값 (focus 없음)이 false이기 때문에 input 창을 누르면, else를 통해 true가 되고, 다시 focus를 잃으면 onBlur가 해당 함수를 호출하면서 false로 만든다.  
+ 감이 잘 오지 않아서 `console.log()`를 통해 값을 찍어 봤다.
 
-  ![](https://images.velog.io/images/twinklesu914/post/6731ada8-4a0f-4ef4-99c4-c3d06305fea5/image.png)
+![](https://images.velog.io/images/twinklesu914/post/6731ada8-4a0f-4ef4-99c4-c3d06305fea5/image.png)
 
-  클릭을 해보면서 state가 어떻게 변하는지 관찰해 볼 수 있었다.
+클릭을 해보면서 state가 어떻게 변하는지 관찰해 볼 수 있었다.
 
 - `styled.div`는 `div`뿐 만 아니라 `a`나 `span`등 여러가지가 가능
 
