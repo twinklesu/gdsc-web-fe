@@ -40,7 +40,7 @@
 ### 210924
 
 - `논리 && 연산자`: JS 에서 `true&&expression`은 항상 true, `false&&expression`은 항상 false
-- 이메일 input은 **@**와 **.**을 무조건 포함하도록
+- 이메일 input은 **\@**와 **\.**을 무조건 포함하도록
 
 ### 210924
 
@@ -63,21 +63,51 @@
 - 처음으로 layout을 좀 layout답게 썼다고 말할 수 있을 것 같다. 마이페이지의 TopNavigation이 다 좌측엔 페이지 이름, 우측엔 x 버튼 형태
 - 페이지 이름을 props로 넘겨 사용했다
 
-![](https://images.velog.io/images/twinklesu914/post/5486ad85-16fc-4734-8012-a8394701984a/image.png)
+```javascript
+// Auth/index.jsx
+<MainWrapper>
+  <TopNavigation activePage="auth" />
+</MainWrapper>
+```
 
-이렇게 현재 페이지 이름을 넘겨주면, TopNavigation에서는
+이렇게 현재 페이지 이름을 넘겨주면, TopNavigation에서는 페이지별로 매핑을 해주고 (매핑이 좀 비효율적 방법으로 된 것 같긴한데,, 전에 짜둔부분이라 그냥 맞춰서 했다...ㅎ..)
 
-![](https://images.velog.io/images/twinklesu914/post/2ea95634-f19a-4874-9085-1d48ad9c36ae/image.png)
+```javascript
+// TopNavigation.jsx
+const mapPageToNavi = {
+  messageBox: <MessageBoxNavigation />,
+  main: <MainNavigation />,
+  myPage: <MyPageNavigation />,
+  join: <XvectorNavigation pageName="회원가입" />,
+  auth: <XvectorNavigation pageName="학교 인증" back="/mypage" />,
+  updateNick: <XvectorNavigation pageName="닉네임 변경" back="/mypage" />,
+  authDetail: <XvectorNavigation pageName="이메일 인증" back="/mypage" />,
+};
 
-페이지별로 매핑을 해주고 (매핑이 좀 비효율적 방법으로 된 것 같긴한데,, 전에 짜둔부분이라 그냥 맞춰서 했다...ㅎ..)
+const TopNavigation = ({ activePage }) => {
+  return <NavigationWrapper>{mapPageToNavi[activePage]}</NavigationWrapper>;
+};
+```
 
-![](https://images.velog.io/images/twinklesu914/post/a444ff6c-8389-4173-9957-92c2d3e50082/image.png)
+```javascript
+// XvectorNavigation.jsx
+const XvectorNavigation = ({ pageName, back }) => {
+  return (
+    <MainWrapper>
+      <h1>{pageName}</h1>
+      <Link to={back}>
+        <img src={xVector} alt="닫기" />
+      </Link>
+    </MainWrapper>
+  );
+};
+```
 
 페이지 이름과 x를 누를시 어느 페이지로 이동할지 알려줬다.
 
 - 그리고 mypage 하위의 라우팅을
 
-```
+```javascript
   <Route exact path="/mypage" component={MyPage} />
   <Route exact path="/mypage/updateNickname" component={UpdateNickname} />
   <Route exact path="/mypage/auth" component={Auth} />
