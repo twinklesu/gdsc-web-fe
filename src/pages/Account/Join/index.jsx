@@ -20,10 +20,6 @@ const MainWrapper = styled.div`
       margin-top: 15px;
       margin-bottom: 5px;
     }
-    p {
-      font-size: 14px;
-      color: ${COLORS.red};
-    }
   }
 `;
 
@@ -123,7 +119,9 @@ const Index = () => {
           placeholder="아이디를 입력해주세요."
         />
         {errorNum === 2 && (
-          <p>아이디는 영어 대소문자, 숫자로 구성된 6~20자만 가능합니다</p>
+          <p className="input-warning">
+            아이디는 영어 대소문자, 숫자로 구성된 6~20자만 가능합니다
+          </p>
         )}
         <h1>비밀번호</h1>
         <MainInput
@@ -132,7 +130,9 @@ const Index = () => {
           onChange={onChangePassword}
           placeholder="비밀번호를 입력해주세요."
         />
-        {errorNum === 1 && <p>비밀번호를 조건에 맞춰 입력해주세요</p>}
+        {errorNum === 1 && (
+          <p className="input-warning">비밀번호를 조건에 맞춰 입력해주세요</p>
+        )}
         <h1>비밀번호 확인</h1>
         <MainInput
           value={rePassword}
@@ -140,7 +140,9 @@ const Index = () => {
           onChange={onChangeRePassword}
           placeholder="비밀번호를 다시 입력해주세요."
         />
-        {errorNum === 3 && <p>비밀번호가 일치하지 않습니다</p>}
+        {errorNum === 3 && (
+          <p className="input-warning">비밀번호가 일치하지 않습니다</p>
+        )}
         <h1>이름</h1>
         <MainInput
           value={name}
@@ -155,7 +157,9 @@ const Index = () => {
           onChange={onChangeEmail}
           placeholder="이메일을 입력해주세요."
         />
-        {errorNum === 4 && <p>이메일 주소를 다시 확인해주세요</p>}
+        {errorNum === 4 && (
+          <p className="input-warning">이메일 주소를 다시 확인해주세요</p>
+        )}
         <h1>닉네임</h1>
         <MainInput
           value={nickname}

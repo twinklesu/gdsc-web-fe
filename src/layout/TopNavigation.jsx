@@ -22,6 +22,7 @@ const mapPageToNavi = {
   join: <XvectorNavigation pageName="회원가입" />,
   auth: <XvectorNavigation pageName="학교 인증" back="/mypage" />,
   updateNick: <XvectorNavigation pageName="닉네임 변경" back="/mypage" />,
+  authDetail: <XvectorNavigation pageName="이메일 인증" back="/mypage" />,
 };
 
 const TopNavigation = ({ activePage }) => {

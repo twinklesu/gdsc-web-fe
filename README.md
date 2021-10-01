@@ -85,3 +85,20 @@
 ```
 
 이런식으로 해서.... 너무 비효율적으로 mypage를 반복적으로 적어줬는데.. 더 좋은 방법이 있을 것 같다. 내일 찾아봐야지!
+
+### 211001
+
+- 학교 이메일 인증을 위해서 input 값을 받을 때, 도메인이 맞는지 확인했다.
+
+```javascript
+    const seoultech = "@seoultech.ac.kr"; // 학교 이메일 주소
+    const patternEngNum = /[a-zA-Z0-9]/;
+
+    if (!value.includes(seoultech) || !patternEngNum.test(value)) {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
+    setEmail(value);
+  };
+```
