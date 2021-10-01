@@ -126,3 +126,8 @@ input {
   color: #0ca5af;
   font-size: 14px;
 }
+.input-warning {
+  font-size: 14px;
+  color: #c62917;
+  margin-top: 5px;
+}
