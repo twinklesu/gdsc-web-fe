@@ -11,6 +11,7 @@ import MyPage from "./pages/Mypage";
 import UpdateNickname from "./pages/Mypage/UpdateNickname";
 import Auth from "./pages/Mypage/Auth";
 import AuthDetail from "./pages/Mypage/AuthDatail";
+import Setting from "./pages/Setting";
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
         <Route exact path="/mypage/updateNickname" component={UpdateNickname} />
         <Route exact path="/mypage/auth" component={Auth} />
         <Route exact path="/mypage/auth/detail" component={AuthDetail} />
+
+        <Route exact path="/setting" component={Setting} />
       </Switch>
     </BrowserRouter>
   );

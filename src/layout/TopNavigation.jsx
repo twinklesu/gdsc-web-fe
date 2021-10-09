@@ -4,8 +4,8 @@ import { COLORS } from "../components/Colors";
 
 import MessageBoxNavigation from "./components/MessageBoxNavigation";
 import MainNavigation from "./components/MainNavigation";
-import MyPageNavigation from "./components/MyPageNavigation";
 import XvectorNavigation from "./components/XvectorNavigation";
+import ArrowNavigation from "./components/ArrowNavigation";
 
 const NavigationWrapper = styled.div`
   display: flex;
@@ -18,11 +18,12 @@ const NavigationWrapper = styled.div`
 const mapPageToNavi = {
   messageBox: <MessageBoxNavigation />,
   main: <MainNavigation />,
-  myPage: <MyPageNavigation />,
+  myPage: <ArrowNavigation pageName="마이페이지" back="/" />,
   join: <XvectorNavigation pageName="회원가입" />,
   auth: <XvectorNavigation pageName="학교 인증" back="/mypage" />,
   updateNick: <XvectorNavigation pageName="닉네임 변경" back="/mypage" />,
   authDetail: <XvectorNavigation pageName="이메일 인증" back="/mypage" />,
+  setting: <ArrowNavigation pageName="홈 화면 설정" back="/" />,
 };
 
 const TopNavigation = ({ activePage }) => {

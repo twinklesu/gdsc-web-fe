@@ -143,3 +143,51 @@ const XvectorNavigation = ({ pageName, back }) => {
     setEmail(value);
   };
 ```
+
+## 3주차
+
+### 홈 화면 설정
+
+1. 탑 네비게이션
+
+- 전에 마이페이지에서 만들어둔 탑 네비게이션과 형태가 같음
+- MyPageNavigation.jsx를 AroowNavigation.jsx로 바꿔준 후 재사용 가능하도록 props를 이용함
+
+2. 체크박스
+
+- 체크박스가 눌렸을 때, 색이 채워지는게 아니라 체크된 이미지가 채워져야함
+- `background: url("${checkImg}");`
+
+3. local storage
+
+- 아 좀이따가 이거 채워야지...
+
+### 게시판
+
+1. react-slick
+
+- react-slick의 한 종류가 carousel 인줄 알았는데, 그 반대
+- carousel은 회전목마라는 뜻
+- 구현할거는 계속 회전하진 않고 끝이 존재하는,,,carousel이라고 생각하면 될 듯
+
+```javascript
+const settings = {
+  className: "slider-wrapper",
+  dots: false, // 광고 배너를 상상했을 때, 아래 넘어가는게 느껴지도록 있는 점들
+  infinite: false, // 계~속 돌게 하는거
+  slideToShow: 1, // 한번에 보여질 개수
+  slideToScroll: 1, // 슬라이드 당 넘어갈 수
+  afterChange: (index) => setSliderId(index), // 인덱스 바꾸는 callback
+  ref: mySlider, // 다른 슬라이더에 ref 넘겨줌
+};
+```
+
+- css를 적용해 주지 않아서, 버튼 작동이 안됐다 꼭! css가 필요한 녀석이다
+- 동작방식은 2가지: 손으로 슬라이드 했거나, 상단의 네비게이션을 클릭했을 때다.
+  ```javascript
+  <button onClick={() => moveSlider(0)}>
+    <UnderLine text="게시판" isActive={sliderId === 0} />
+  </button>
+  ```
+  그래서 상단 네비게이션을 버튼으로 구성해서, 버튼 클릭시 `moveSlider()` 함수가 호출되어 `setSliderID()`를 활용해 페이지 인덱스를 변경해준다.
+  슬라이더가 작동했을 때도 setting의 `afterChange: (index) => setSliderId(index)`를 통해 페이지 인덱스가 변경된다.
