@@ -29,6 +29,8 @@
 
 ### 210919
 
+z
+
 - top nav랑 bottom nav에 가려지지 않도록, 내용물의 가장 밖 div에 padding 주기!
 
 ## 2주차
@@ -170,17 +172,17 @@ const XvectorNavigation = ({ pageName, back }) => {
 - carousel은 회전목마라는 뜻
 - 구현할거는 계속 회전하진 않고 끝이 존재하는,,,carousel이라고 생각하면 될 듯
 
-```javascript
-const settings = {
-  className: "slider-wrapper",
-  dots: false, // 광고 배너를 상상했을 때, 아래 넘어가는게 느껴지도록 있는 점들
-  infinite: false, // 계~속 돌게 하는거
-  slideToShow: 1, // 한번에 보여질 개수
-  slideToScroll: 1, // 슬라이드 당 넘어갈 수
-  afterChange: (index) => setSliderId(index), // 인덱스 바꾸는 callback
-  ref: mySlider, // 다른 슬라이더에 ref 넘겨줌
-};
-```
+  ```javascript
+  const settings = {
+    className: "slider-wrapper",
+    dots: false, // 광고 배너를 상상했을 때, 아래 넘어가는게 느껴지도록 있는 점들
+    infinite: false, // 계~속 돌게 하는거
+    slideToShow: 1, // 한번에 보여질 개수
+    slideToScroll: 1, // 슬라이드 당 넘어갈 수
+    afterChange: (index) => setSliderId(index), // 인덱스 바꾸는 callback
+    ref: mySlider, // 다른 슬라이더에 ref 넘겨줌
+  };
+  ```
 
 - css를 적용해 주지 않아서, 버튼 작동이 안됐다 꼭! css가 필요한 녀석이다
 - 동작방식은 2가지: 손으로 슬라이드 했거나, 상단의 네비게이션을 클릭했을 때다.
@@ -191,3 +193,36 @@ const settings = {
   ```
   그래서 상단 네비게이션을 버튼으로 구성해서, 버튼 클릭시 `moveSlider()` 함수가 호출되어 `setSliderID()`를 활용해 페이지 인덱스를 변경해준다.
   슬라이더가 작동했을 때도 setting의 `afterChange: (index) => setSliderId(index)`를 통해 페이지 인덱스가 변경된다.
+
+2. 즐겨찾는 게시판
+
+- setting에 이용했던 체크박스와 동일한 방식으로 즐겨찾기 할 수 있게 했다
+- **local storage**를 이용해서 메인화면에 선택한 것만 보이게 했다.
+- 근데 이미지 적용이 안돼서 일단 누르면 색이 칠해지는 체크박스로 만들었다ㅜㅜㅜㅜㅜ
+
+3. 진로, 홍보 슬라이더
+
+- 이 곳의 게시판 모양은, 메인의 핫게시판 + 실시간의 형태
+- 둘의 코드를 이용해 `BoardBox.jsx`를 만듦
+- props를 이용해 title과 content를 매번 바꿀 수 있게하여 재사용했다.
+  ```javascript
+  const BoardBox = ({ title, contents, to }) => {
+    return (
+      <BoardWrapper className="board-wapper">
+        <div>// 이 곳에 title과 to props를 이용해 제목과 더보기 버튼</div>
+        <div>
+          {contents.map((content) => (
+            <ContentWrapper>
+              // content는 title, date, like, comments, content를 갖고있음 //
+              백엔드 연결하면 Link 태그 이용해 게시글 자세히 보는 페이지로 이동
+            </ContentWrapper>
+          ))}
+        </div>
+      </BoardWrapper>
+    );
+  };
+  ```
+
+## 게시글 목록, 세부 페이지
+
+- `<Link to={`/board/list/${board.link}`}>`로 연결해주기
