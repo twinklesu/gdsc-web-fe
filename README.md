@@ -234,3 +234,14 @@ const XvectorNavigation = ({ pageName, back }) => {
 - styled를 이용해서 `&lt;MainWrapper isSecret={isSecret}>` 로 props를 넘겨주고
   `color: ${(props) => props.isSecret ? COLORS.red : COLORS.grey_400};`로 색을 입혀줬다.
 - isSecret는 state로 체크박스가 체크될 때 true, 언쳌될때 false로 바꿔줬다.
+
+2. 이미지 삽입
+
+- ` <input
+  type="file"
+  accept="image/\*"
+  name="image"
+  id="imageInput"
+  onChange={onSelectImage}
+  style={{ display: "none" }}
+  />

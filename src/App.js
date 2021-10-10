@@ -14,6 +14,7 @@ import AuthDetail from "./pages/Mypage/AuthDatail";
 import Setting from "./pages/Setting";
 import BoardCategory from "./pages/BoardCategory";
 import BoardDetail from "./pages/BoardDetail";
+import BoardPost from "./pages/BoardPost";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route exact path="/board" component={Board} />
         <Route exact path="/board/list/:category" component={BoardCategory} />
         <Route exact path="/board/detail/:id" component={BoardDetail} />
+        <Route exact path="/board/post" component={BoardPost} />
 
         <Route exact path="/alarm" component={Alarm} />
         <Route exact path="/alarm/:no" component={MessageDetailWrapper} />

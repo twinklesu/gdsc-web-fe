@@ -152,7 +152,6 @@ const MainWrapper = styled.div`
       } 
 
     }
-
   }
 `;
 
