@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import BoardDetailTopNavigation from "../../layout/components/BoardDetailTopNavigation";
@@ -6,6 +6,7 @@ import profileImg from "../../assets/img/temp.png";
 import likeIcon from "../../assets/icon/like.png";
 import commentIcon from "../../assets/icon/comment.png";
 import { COLORS } from "../../components/Colors.js";
+import sendIcon from "../../assets/icon/send.png";
 
 const MainWrapper = styled.div`
   .content-top {
@@ -103,14 +104,50 @@ const MainWrapper = styled.div`
       }
       .comment-input-wrapper{
         display: flex;
-        justify-content: space-between;
-        background-color: ${COLORS.grey_300};
+        background-color: ${COLORS.grey_200};
+        padding: 10px 10px 10px 10px ;
+        border-radius: 5px;
+        align-self: center;
+        position: fixed;
+        bottom: 10px;
         .comment-input {
-          background-color: ${COLORS.grey_300};
-          padding-top: 5px;
-          padding-bottom: 5px;
-          padding-left: 5px;
-          border-radius: 5px;
+          caret-color: #c62917;
+          width: 400px;
+          display: inline;
+        }
+        .input-wrapper {
+          margin-left: 10px;
+          display: flex;
+          align-items: center;
+        }
+        .comment-secret {
+          display: flex;
+          width: fit-content;
+          height: fit-content;
+          label { 
+            color: ${(props) =>
+              props.isSecret ? COLORS.red : COLORS.grey_400};
+            margin-left: 5px;
+          }
+          input[type="checkbox"] {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid ${COLORS.grey_400};
+            border-radius: 2px;
+            align-self: center;
+          }
+          input[type="checkbox"]:checked {
+            width: 12px;
+            height: 12px;
+            background-color:${COLORS.red};
+            border: 1px solid ${COLORS.red};
+            border-raidus: 2px;
+            align-self: center;
+          }
+        }
+        img {
+          width: 20px;
         }
       } 
 
@@ -145,8 +182,18 @@ const dummyComment = [
 ];
 
 const Index = () => {
+  const [isSecret, setIsSecret] = useState(true);
+  const onChangeCheck = (e) => {
+    if (e.target.checked) {
+      setIsSecret(true);
+      console.log(isSecret);
+    } else {
+      setIsSecret(false);
+      console.log(isSecret);
+    }
+  };
   return (
-    <MainWrapper>
+    <MainWrapper isSecret={isSecret}>
       <BoardDetailTopNavigation
         title="게시판이름"
         back="/board/list/0"
@@ -209,13 +256,28 @@ const Index = () => {
           </div>
         ))}
         <div className="comment-input-wrapper">
-          <p>익명체크박스</p>
-          <input
-            className="comment-input"
-            placeholder="댓글을 입력하세요."
-            tpye="text"
-          />
-          <p>종이비행기</p>
+          <div className="comment-secret">
+            <input
+              type="checkbox"
+              name="isSecret"
+              id="isSecret"
+              checked={isSecret}
+              onChange={onChangeCheck}
+            />
+            <label htmlFor="isSecret">익명</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              className="comment-input"
+              placeholder="댓글을 입력하세요."
+              type="text"
+            />
+            <img
+              src={sendIcon}
+              alt="댓글 입력"
+              onClick={() => alert("댓글 입력")}
+            />
+          </div>
         </div>
       </div>
     </MainWrapper>

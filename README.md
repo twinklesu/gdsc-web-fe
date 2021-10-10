@@ -226,3 +226,11 @@ const XvectorNavigation = ({ pageName, back }) => {
 ## 게시글 목록, 세부 페이지
 
 - `<Link to={`/board/list/${board.link}`}>`로 연결해주기
+
+1. 댓글 입력 창
+
+- 이미지 넣어야지
+- 체크 박스 누르면 익명 글씨도 빨강색
+- styled를 이용해서 `&lt;MainWrapper isSecret={isSecret}>` 로 props를 넘겨주고
+  `color: ${(props) => props.isSecret ? COLORS.red : COLORS.grey_400};`로 색을 입혀줬다.
+- isSecret는 state로 체크박스가 체크될 때 true, 언쳌될때 false로 바꿔줬다.
