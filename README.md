@@ -223,7 +223,7 @@ const XvectorNavigation = ({ pageName, back }) => {
   };
   ```
 
-## 게시글 목록, 세부 페이지
+### 게시글 목록, 세부 페이지
 
 - `<Link to={`/board/list/${board.link}`}>`로 연결해주기
 
@@ -237,11 +237,6 @@ const XvectorNavigation = ({ pageName, back }) => {
 
 2. 이미지 삽입
 
-- ` <input
-  type="file"
-  accept="image/\*"
-  name="image"
-  id="imageInput"
-  onChange={onSelectImage}
-  style={{ display: "none" }}
-  />
+- `&lt;input type="file" accept="image/*" />` 룰 이용해서 이미지를 업로드 하도록 했다
+- 선택했을 때 이미지 보여지게 하는건... 백엔드 연결하면서 하기로했다!
+- 미래의 나 화이팅! ㅋㅎ
