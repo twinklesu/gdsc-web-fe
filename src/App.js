@@ -21,18 +21,18 @@ import axios from "axios";
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
 
-  useEffect(() => {
-    const fetchLogin = async () => {
-      const result = await axios("/api/user");
-      console.log(result.data);
-      if (result.data.success) {
-        setIsLogin(true);
-      } else {
-        setIsLogin(false);
-      }
-    };
-    fetchLogin();
-  }, []);
+  // useEffect(() => {
+  //   const fetchLogin = async () => {
+  //     const result = await axios("/api/user");
+  //     console.log(result.data);
+  //     if (result.data.success) {
+  //       setIsLogin(true);
+  //     } else {
+  //       setIsLogin(false);
+  //     }
+  //   };
+  //   fetchLogin();
+  // }, []);
 
   return (
     <BrowserRouter>
@@ -49,7 +49,11 @@ const App = () => {
               path="/board/list/:category"
               component={BoardCategory}
             />
-            <Route exact path="/board/detail/:id" component={BoardDetail} />
+            <Route
+              exact
+              path="/board/detail/:category"
+              component={BoardDetail}
+            />
             <Route exact path="/board/post" component={BoardPost} />
 
             <Route exact path="/alarm" component={Alarm} />
