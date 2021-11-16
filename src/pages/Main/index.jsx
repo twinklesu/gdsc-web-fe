@@ -16,6 +16,7 @@ import {
 } from "../../components/dummyData";
 import { COLORS } from "../../components/Colors";
 import MyBoardWrapper from "./components/MyBoardWrapper";
+import axios from "axios";
 
 const ContentWrapper = styled.div`
   padding-top: 70px;
@@ -62,6 +63,18 @@ const Index = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios("/api/user/test");
+        console.log(result);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  });
 
   return (
     <div>
