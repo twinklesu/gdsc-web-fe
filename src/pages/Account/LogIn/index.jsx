@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { COLORS } from "../../../components/Colors";
@@ -6,6 +6,7 @@ import { COLORS } from "../../../components/Colors";
 import MainLogo from "../../../assets/logo/logo.png";
 import MainButton from "../../../components/Button/MainButton";
 import MainInput from "../../../components/Input/MainInput";
+import axios from "axios";
 
 const LoginWrapper = styled.div`
   display: block;
@@ -53,6 +54,26 @@ const CheckInput = () => {
     }
   };
 
+  const onClickLoginBtn = async () => {
+    const loginResult = await axios({
+      method: "POST",
+      url: `/api/user/login`,
+      data: {
+        user_id: id,
+        password: pw,
+      },
+    });
+    console.log(`result: ${loginResult.data.success}`);
+    if (loginResult.data.success) {
+      // 성공
+      document.location.href = "/";
+    } else {
+      // 실패
+      alert("잘못된 아이디 혹은 비밀번호 입니다.");
+      window.location.reload();
+    }
+  };
+
   return (
     <div>
       <div>
@@ -74,7 +95,7 @@ const CheckInput = () => {
         handleFocus={handleFocus}
         placeholder="비밀번호"
       />
-      <MainButton text={"에브리타임 로그인"} onClick={() => alert("로그인")} />
+      <MainButton text={"에브리타임 로그인"} onClick={onClickLoginBtn} />
       {!isInput && (
         <div className="to-join-button">
           <Link to="/signup">회원가입</Link>
