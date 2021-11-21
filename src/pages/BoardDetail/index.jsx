@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import BoardDetailTopNavigation from "../../layout/components/BoardDetailTopNavigation";
@@ -7,6 +7,8 @@ import likeIcon from "../../assets/icon/like.png";
 import commentIcon from "../../assets/icon/comment.png";
 import { COLORS } from "../../components/Colors.js";
 import sendIcon from "../../assets/icon/send.png";
+import axios from "axios";
+import { boardCategoryIds } from "../../components/boardCategoryId";
 
 const MainWrapper = styled.div`
   .content-top {
@@ -155,33 +157,12 @@ const MainWrapper = styled.div`
   }
 `;
 
-const dummyContent = {
-  title: "아 집에 가고싶다",
-  content:
-    "오늘 그래도 리엑트 과제 끝내야지ㅜㅜ 내일 알고리즘하고 도커 발표 연습해야지",
-  like: 10,
-  comments: 2,
-  date: "10/10 01:04",
-  nickname: "익명",
-};
-
-const dummyComment = [
-  {
-    nickname: "익명",
-    content: "집갈때 건전지 안사면 난 머저리",
-    date: "10/10 01:10",
-    like: 0,
-  },
-  {
-    nickname: "익명",
-    content: "그래도 위에 짜는데 6분밖에 안걸렸네 ㅋㅎ",
-    date: "10/10 01:11",
-    like: 2,
-  },
-];
-
-const Index = () => {
+const Index = ({ match }) => {
   const [isSecret, setIsSecret] = useState(true);
+  const [content, setContent] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [categoryId, setCategoryId] = useState(0);
+
   const onChangeCheck = (e) => {
     if (e.target.checked) {
       setIsSecret(true);
@@ -191,36 +172,52 @@ const Index = () => {
       console.log(isSecret);
     }
   };
+
+  useEffect(() => {
+    const id = match.params.id;
+
+    const fetchData = async () => {
+      const result = await axios(`/api/board/detail/${id}`);
+      setContent(result.data.data);
+      console.log(result.data.data);
+      setCategoryId(result.data.data.board_category_id);
+      const commentResult = await axios(`/api/board/${id}/comment`);
+      setComments(commentResult.data.data);
+      console.log(commentResult.data.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <MainWrapper isSecret={isSecret}>
       <BoardDetailTopNavigation
-        title="게시판이름"
-        back="/board/list/0"
-        categoryId={0}
+        title={boardCategoryIds[categoryId]}
+        back={`/board/list/${categoryId}`}
+        categoryId={categoryId}
       />
       <div className="content-top">
         <img className="profile-img" src={profileImg} alt="프로필 사진" />
         <div className="content-top-info">
-          <p className="nickname">{dummyContent.nickname}</p>
-          <p className="date">{dummyContent.date}</p>
+          <p className="nickname">{content.nickname}</p>
+          <p className="date">{content.date}</p>
         </div>
       </div>
 
       <div className="content-wrapper">
-        <h1 className="title">{dummyContent.title}</h1>
-        <p className="content">{dummyContent.content}</p>
+        <h1 className="title">{content.title}</h1>
+        <p className="content">{content.content}</p>
       </div>
       <div className="popular-num">
         <img src={likeIcon} alt="공감" />
-        <p className="like-num">{dummyContent.like}</p>
+        <p className="like-num">{content.like_num}</p>
         <img src={commentIcon} alt="댓글" />
-        <p className="comments-num">{dummyContent.comments}</p>
+        <p className="comments-num">{content.comment_num}</p>
       </div>
       <button className="agree-btn" onClick={() => alert("공감을 눌렀습니다.")}>
         공감
       </button>
       <div className="comment-wrapper">
-        {dummyComment.map((comment, index) => (
+        {comments.map((comment, index) => (
           <div className="comment-item">
             <div className="comment-top">
               <div>
@@ -241,14 +238,14 @@ const Index = () => {
             <p className="comment-content">{comment.content}</p>
             <div className="comment-bottom">
               <p className="date">{comment.date}</p>
-              {comment.like !== 0 && (
+              {comment.like_num !== 0 && (
                 <div>
                   <img
                     src={likeIcon}
                     alt="댓글 좋아요 수"
                     className="comment-like-img"
                   />
-                  <p className="comment-like-num">{comment.like}</p>
+                  <p className="comment-like-num">{comment.like_num}</p>
                 </div>
               )}
             </div>

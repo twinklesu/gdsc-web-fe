@@ -49,11 +49,7 @@ const App = () => {
               path="/board/list/:category"
               component={BoardCategory}
             />
-            <Route
-              exact
-              path="/board/detail/:category"
-              component={BoardDetail}
-            />
+            <Route exact path="/board/detail/:id" component={BoardDetail} />
             <Route exact path="/board/post" component={BoardPost} />
 
             <Route exact path="/alarm" component={Alarm} />
