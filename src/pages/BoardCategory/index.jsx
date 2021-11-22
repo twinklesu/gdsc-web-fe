@@ -116,7 +116,7 @@ const Index = ({ match }) => {
               <div className="popular-top">
                 <div className="profile">
                   <img src={profileImg} alt="프로필 이미지" />
-                  <p className="nickname">{"익명"}</p>
+                  <p className="nickname">{content.nickname}</p>
                 </div>
                 <p className="date">{content.created_at}</p>
               </div>
@@ -135,7 +135,7 @@ const Index = ({ match }) => {
         </ContentWrapper>
       </div>
       <div className="write-wrapper">
-        <Link className="write-btn" to="/board/post">
+        <Link className="write-btn" to={`/board/post/${categoryId}`}>
           <img src={pencilImg} className="write-img" alt="글 작성" />
           <p>글 쓰기</p>
         </Link>

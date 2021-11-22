@@ -9,16 +9,22 @@ import { COLORS } from "../../components/Colors.js";
 import sendIcon from "../../assets/icon/send.png";
 import axios from "axios";
 import { boardCategoryIds } from "../../components/boardCategoryId";
+import { useHistory } from "react-router";
 
 const MainWrapper = styled.div`
   .content-top {
-    diplay: flex;
+    diplay: table;
     width: 100%;
     margin-bottom: 10px;
+    vertical-align: middle;
     .profile-img {
       height: 30px;
       border-radius: 5px;
       margin-right: 10px;
+    }
+    .nickname {
+      display: table-cell;
+      padding-bottom: 5px;
     }
     .content-top-info {
       display: inline-block;
@@ -158,10 +164,12 @@ const MainWrapper = styled.div`
 `;
 
 const Index = ({ match }) => {
+  let history = useHistory();
   const [isSecret, setIsSecret] = useState(true);
   const [content, setContent] = useState([]);
   const [comments, setComments] = useState([]);
   const [categoryId, setCategoryId] = useState(0);
+  const [newComment, setNewComment] = useState("");
 
   const onChangeCheck = (e) => {
     if (e.target.checked) {
@@ -170,6 +178,60 @@ const Index = ({ match }) => {
     } else {
       setIsSecret(false);
       console.log(isSecret);
+    }
+  };
+
+  const onChangeComment = (e) => {
+    setNewComment(e.target.value);
+  };
+
+  const agreeFunction = async ({ cat, ref_id }) => {
+    const agreeResult = await axios({
+      method: "POST",
+      url: "/api/like",
+      data: {
+        category: cat,
+        ref_id: ref_id,
+      },
+    });
+    console.log(`ref_id: ${ref_id}`);
+    console.log(agreeResult.data);
+    if (agreeResult.data.success) {
+      window.location.reload();
+    } else {
+      alert(agreeResult.data.message);
+    }
+  };
+
+  const onClickPostAgreeBtn = () => {
+    const postId = match.params.id;
+    agreeFunction({ cat: 1, ref_id: postId });
+  };
+
+  const onClickCommentAgreeBtn = ({ id }) => {
+    agreeFunction({ cat: 2, ref_id: id });
+  };
+
+  const commentPostFunction = async () => {
+    const commentResult = await axios({
+      method: "POST",
+      url: "/api/board/comment",
+      data: {
+        board_id: match.params.id,
+        content: newComment,
+        is_secret: isSecret,
+      },
+    });
+    if (commentResult.data.success) {
+      window.location.reload();
+    }
+  };
+
+  const onClickCommentPost = () => {
+    if (newComment === "") {
+      alert("댓글을 입력해주세요.");
+    } else {
+      commentPostFunction();
     }
   };
 
@@ -213,7 +275,7 @@ const Index = ({ match }) => {
         <img src={commentIcon} alt="댓글" />
         <p className="comments-num">{content.comment_num}</p>
       </div>
-      <button className="agree-btn" onClick={() => alert("공감을 눌렀습니다.")}>
+      <button className="agree-btn" onClick={onClickPostAgreeBtn}>
         공감
       </button>
       <div className="comment-wrapper">
@@ -230,7 +292,7 @@ const Index = ({ match }) => {
               </div>
               <button
                 className="comment-agree-btn"
-                onClick={() => alert("댓글 공감")}
+                onClick={() => onClickCommentAgreeBtn({ id: comment.id })}
               >
                 공감
               </button>
@@ -267,12 +329,9 @@ const Index = ({ match }) => {
               className="comment-input"
               placeholder="댓글을 입력하세요."
               type="text"
+              onChange={onChangeComment}
             />
-            <img
-              src={sendIcon}
-              alt="댓글 입력"
-              onClick={() => alert("댓글 입력")}
-            />
+            <img src={sendIcon} alt="댓글 입력" onClick={onClickCommentPost} />
           </div>
         </div>
       </div>

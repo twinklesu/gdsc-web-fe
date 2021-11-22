@@ -50,7 +50,7 @@ const App = () => {
               component={BoardCategory}
             />
             <Route exact path="/board/detail/:id" component={BoardDetail} />
-            <Route exact path="/board/post" component={BoardPost} />
+            <Route exact path="/board/post/:category" component={BoardPost} />
 
             <Route exact path="/alarm" component={Alarm} />
             <Route exact path="/alarm/:no" component={MessageDetailWrapper} />

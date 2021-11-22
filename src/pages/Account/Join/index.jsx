@@ -6,6 +6,7 @@ import MainInput from "../../../components/Input/MainInput";
 import { COLORS } from "../../../components/Colors";
 
 import TopNavigation from "../../../layout/TopNavigation";
+import axios from "axios";
 
 const MainWrapper = styled.div`
   display: block;
@@ -107,6 +108,37 @@ const Index = () => {
     setMajor(e.target.value);
   };
 
+  const joinFunction = async () => {
+    const joinResult = await axios({
+      method: "POST",
+      url: "/api/user",
+      data: {
+        user_id: id,
+        password: password,
+        email: email,
+        name: name,
+        nickname: nickname,
+        major: major,
+      },
+    });
+    console.log(`join result: ${joinResult.data}`);
+    if (joinResult.data.success) {
+      // 성공
+      document.location.href = "/login";
+    } else {
+      // 실패
+      alert(joinResult.data.message);
+    }
+  };
+
+  const onClickJoinBtn = () => {
+    if (errorNum == 0 && name !== "" && nickname !== "" && major !== "") {
+      joinFunction();
+    } else {
+      alert("값을 다시 한번 확인해주세요.");
+    }
+  };
+
   return (
     <MainWrapper>
       <TopNavigation activePage="join" />
@@ -175,7 +207,7 @@ const Index = () => {
           placeholder="전공을 입력해주세요."
         />
       </div>
-      <MainButton text="회원가입" onClick={() => alert("회원가입")} />
+      <MainButton text="회원가입" onClick={onClickJoinBtn} />
     </MainWrapper>
   );
 };

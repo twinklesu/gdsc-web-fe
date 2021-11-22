@@ -5,8 +5,16 @@ import { Link } from "react-router-dom";
 import xVector from "../../assets/vector/xVector.svg";
 import { COLORS } from "../../components/Colors";
 import cameraImg from "../../assets/icon/camera.svg";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 const MainWrapper = styled.div`
+  .post-title {
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+  }
   .post-content {
     margin-top: 20px;
     height: 300px;
@@ -79,28 +87,16 @@ const NavigationWrapper = styled.div`
   }
 `;
 
-const TopNavigation = () => {
-  return (
-    <NavigationWrapper>
-      <div className="title-wrapper">
-        <Link to="/board/list/1">
-          <img src={xVector} alt="닫기" />
-        </Link>
-        <h1>글 쓰기</h1>
-      </div>
-      <button className="write-btn" onClick={() => alert("글 쓰기")}>
-        완료
-      </button>
-    </NavigationWrapper>
-  );
-};
-
-const Index = () => {
+const Index = ({ match }) => {
+  let history = useHistory();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [isSecret, setIsSecret] = useState(true);
+
   const onSelectImage = (e) => {
     setImage(e.target.files[0]);
   };
-  const [isSecret, setIsSecret] = useState(true);
   const onChangeCheck = (e) => {
     if (e.target.checked) {
       setIsSecret(true);
@@ -110,12 +106,64 @@ const Index = () => {
       console.log(isSecret);
     }
   };
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+  const onChangeContent = (e) => {
+    setContent(e.target.value);
+  };
+  const writeFunction = async () => {
+    const writeResult = await axios({
+      method: "POST",
+      url: "/api/board",
+      data: {
+        category_id: match.params.category,
+        title: title,
+        content: content,
+        is_secret: isSecret,
+      },
+    });
+    if (writeResult.data.success) {
+      // 성공
+      history.push(`/board/detail/${writeResult.data.data.id}`);
+    }
+  };
+
+  const TopNavigation = () => {
+    const onClickWriteBtn = () => {
+      if (title !== "" && content !== "") {
+        writeFunction();
+      } else {
+        alert("제목과 내용을 입력해주세요.");
+      }
+    };
+    return (
+      <NavigationWrapper>
+        <div className="title-wrapper">
+          <Link to={`board/list/${match.params.category}`}>
+            <img src={xVector} alt="닫기" />
+          </Link>
+          <h1>글 쓰기</h1>
+        </div>
+        <button className="write-btn" onClick={onClickWriteBtn}>
+          완료
+        </button>
+      </NavigationWrapper>
+    );
+  };
+
   return (
     <MainWrapper isSecret={isSecret}>
       <TopNavigation />
       <textarea
+        className="post-title"
+        placeholder="제목을 입력하세요."
+        onChange={onChangeTitle}
+      ></textarea>
+      <textarea
         className="post-content"
         placeholder="내용을 입력하세요."
+        onChange={onChangeContent}
       ></textarea>
       <div className="bottom-nav">
         <div>

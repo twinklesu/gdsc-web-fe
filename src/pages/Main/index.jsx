@@ -64,18 +64,6 @@ const Index = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios("/api/user/test");
-        console.log(result);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  });
-
   return (
     <div>
       <div className="top-navigation">
