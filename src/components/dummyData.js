@@ -15,12 +15,17 @@ export const dummyMyboard = [
     isNew: true,
   },
   {
+    category: "새내기게시판",
+    title: "이제 22가 새내기네",
+    isNew: true,
+  },
+  {
     category: "시사 이슈",
     title: "구글이 짱이다",
     isNew: true,
   },
   {
-    category: "GDSC 짱짱",
+    category: "정보게시판",
     title: "웹 너무 재밌어요.",
     isNew: false,
   },
@@ -58,7 +63,8 @@ export const dummyHot = [
     comments: 20,
   },
   {
-    title: "ITM 너무 좋은 학과인듯 박수빈 ITM 8대 부짱>< 우리 학생회이름 인앤아웃",
+    title:
+      "ITM 너무 좋은 학과인듯 박수빈 ITM 8대 부짱>< 우리 학생회이름 인앤아웃",
     date: "15:30",
     like: 20,
     comments: 10,
@@ -114,7 +120,8 @@ export const dummyMessage = [
   {
     nick: "익명",
     date: "09/10 19:06",
-    title: "GDSC 모집 기간이 지났기 때문에 지금은 지원이 힘들 것 같습니다람쥐는 도토리를 좋아해.",
+    title:
+      "GDSC 모집 기간이 지났기 때문에 지금은 지원이 힘들 것 같습니다람쥐는 도토리를 좋아해.",
     id: "2",
   },
   {

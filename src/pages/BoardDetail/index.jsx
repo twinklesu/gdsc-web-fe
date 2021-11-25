@@ -171,6 +171,8 @@ const Index = ({ match }) => {
   const [categoryId, setCategoryId] = useState(0);
   const [newComment, setNewComment] = useState("");
 
+  const [changeState, setChangeState] = useState(true);
+
   const onChangeCheck = (e) => {
     if (e.target.checked) {
       setIsSecret(true);
@@ -197,7 +199,7 @@ const Index = ({ match }) => {
     console.log(`ref_id: ${ref_id}`);
     console.log(agreeResult.data);
     if (agreeResult.data.success) {
-      window.location.reload();
+      setChangeState(!changeState);
     } else {
       alert(agreeResult.data.message);
     }
@@ -223,7 +225,7 @@ const Index = ({ match }) => {
       },
     });
     if (commentResult.data.success) {
-      window.location.reload();
+      setChangeState(!changeState);
     }
   };
 
@@ -248,7 +250,7 @@ const Index = ({ match }) => {
       console.log(commentResult.data.data);
     };
     fetchData();
-  }, []);
+  }, [changeState, match.params.id]);
 
   return (
     <MainWrapper isSecret={isSecret}>

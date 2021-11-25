@@ -37,8 +37,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/signup" component={Join} />
-        <Route exact path="/login" component={LogIn} />
+        <Route exact path="/signup">
+          {isLogin ? <Redirect path="/" /> : <Main />}
+        </Route>
+        <Route exact path="/login">
+          {isLogin ? <Redirect path="/" /> : <LogIn />}
+        </Route>
 
         {isLogin ? (
           <Switch>

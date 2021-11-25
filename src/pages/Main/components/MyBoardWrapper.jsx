@@ -54,8 +54,10 @@ const MyBoardWrapper = ({ myBoard }) => {
     <div>
       {myBoard.map(
         (board, index) =>
-          //   console.log(pinId[board.category])
-          pin[pinId[board.category]] && <MyBoardItem board={board} />
+          // <p>{pinId[board.category]}</p>
+          pin[pinId[board.category]] && (
+            <MyBoardItem board={board} index={index} />
+          )
       )}
     </div>
   );
