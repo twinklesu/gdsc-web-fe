@@ -38,6 +38,7 @@ const ContentWrapper = styled.div`
 
   .content-title {
     font-weight: bold;
+    margin-bottom: 5px;
   }
 
   .content {
@@ -82,14 +83,14 @@ const BoardBox = ({ title, contents, to }) => {
           <ContentWrapper>
             <Link>
               <h1 className="content-title">{content.title}</h1>
-              <p className="content">{content.contents}</p>
+              <p className="content">{content.content}</p>
               <div className="bottom">
                 <p className="date">{content.date}</p>
                 <div className="popular-num">
                   <img src={likeIcon} alt="공감" />
-                  <p className="like-num">{content.like}</p>
+                  <p className="like-num">{content.like_num}</p>
                   <img src={commentIcon} alt="댓글" />
-                  <p className="comments-num">{content.comments}</p>
+                  <p className="comments-num">{content.comment_num}</p>
                 </div>
               </div>
             </Link>

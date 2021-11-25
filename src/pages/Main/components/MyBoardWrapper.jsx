@@ -42,20 +42,20 @@ const MyBoardWrapper = ({ myBoard }) => {
   }, []);
 
   const pinId = {
-    자유게시판: "isFree",
-    비밀게시판: "isSecret",
-    졸업생게시판: "isGraudate",
-    새내기게시판: "isFreshman",
-    "시사 이슈": "isIssue",
-    정보게시판: "isInfo",
+    1: "isFree",
+    2: "isSecret",
+    3: "isGraudate",
+    4: "isFreshman",
+    5: "isIssue",
+    6: "isInfo",
   };
 
   return (
     <div>
       {myBoard.map(
         (board, index) =>
-          // <p>{pinId[board.category]}</p>
-          pin[pinId[board.category]] && (
+          // <p>{pinId[board.board_category_id]}</p>
+          pin[pinId[board.board_category_id]] && (
             <MyBoardItem board={board} index={index} />
           )
       )}

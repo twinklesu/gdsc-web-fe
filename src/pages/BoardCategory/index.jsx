@@ -66,6 +66,12 @@ const ContentWrapper = styled.div`
     width: 100%;
   }
 
+  .title {
+    height: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
   .bottom {
     display: flex;
     justify-content: space-between;
@@ -120,6 +126,7 @@ const Index = ({ match }) => {
                 </div>
                 <p className="date">{content.created_at}</p>
               </div>
+              <p className="title">{content.title}</p>
               <p className="content">{content.content}</p>
               <div className="bottom">
                 <p className="date">{""}</p>

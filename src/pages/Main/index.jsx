@@ -48,6 +48,10 @@ const Index = () => {
     isHot: true,
   });
 
+  const [myboardList, setMyboardList] = useState([]);
+  const [realtimeList, setRealtimeList] = useState([]);
+  const [hotList, setHotList] = useState([]);
+
   useEffect(() => {
     const defaultSetting = { isMine: true, isRealtime: true, isHot: true };
     const storage = window.localStorage.getItem("setting");
@@ -62,6 +66,17 @@ const Index = () => {
         isRealtime: storageJson.isRealtime,
       });
     }
+
+    // 데이터 받아오기
+    const fetchData = async () => {
+      const myboardResult = await axios("/api/board/main/myboard");
+      setMyboardList(myboardResult.data.data);
+      const realtimeResult = await axios(`/api/board/main/realtime`);
+      setRealtimeList(realtimeResult.data.data);
+      const hotResult = await axios(`/api/board/main/hot`);
+      setHotList(hotResult.data.data);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -76,17 +91,17 @@ const Index = () => {
 
         {setting.isMine && (
           <div className="my-board">
-            <MyBoard myBoard={dummyMyboard} />
+            <MyBoard myBoard={myboardList} />
           </div>
         )}
         {setting.isRealtime && (
           <div className="real-time-board">
-            <RealTimeBoard contents={dummyRealtime} />
+            <RealTimeBoard contents={realtimeList} />
           </div>
         )}
         {setting.isHot && (
           <div className="popular-board">
-            <Popular contents={dummyHot} />
+            <Popular contents={hotList} />
           </div>
         )}
 

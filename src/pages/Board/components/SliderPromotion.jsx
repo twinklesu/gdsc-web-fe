@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
 import BoardBox from "../../../layout/BoardBox.jsx";
 
 import { dummyRealtime } from "../../../components/dummyData.js";
@@ -10,11 +10,28 @@ const BoardWrapper = styled.div`
 `;
 
 const SliderPromotion = () => {
+  const [hotList, setHotList] = useState([]);
+  const [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `/api/board/main/filter?category=${9}&hot=${0}`
+      );
+      setPostList(result.data.data);
+
+      const hotResult = await axios(
+        `/api/board/main/filter?category=${9}&hot=${1}`
+      );
+      setHotList(hotResult.data.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <BoardWrapper>
-      {/* 나중에 백엔드 연결하면 그냥 contents만 연결 */}
-      <BoardBox title="인기 게시물" contents={dummyRealtime} to="" />
-      <BoardBox title="스터디" contents={dummyRealtime} to="/" />
+      <BoardBox title="인기 게시물" contents={hotList} to="/board/list/9" />
+      <BoardBox title="홍보게시판" contents={postList} to="/board/list/9" />
     </BoardWrapper>
   );
 };

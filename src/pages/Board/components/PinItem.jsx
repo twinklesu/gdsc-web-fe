@@ -37,21 +37,16 @@ const PinItem = ({ title, id, categoryId }) => {
   });
 
   const onChangeCheck = (e) => {
-    console.log(`${e.target.checked}: ${e.target.name}`);
+    const pin = JSON.parse(window.localStorage.getItem("pin"));
     if (e.target.checked) {
       const newObj = { ...pin, [e.target.name]: true };
       setPin(newObj);
-      console.log(`newObj: ${JSON.stringify(newObj)}`);
+
       window.localStorage.setItem("pin", JSON.stringify(newObj));
-      console.log(window.localStorage.getItem("pin"));
     } else {
       const newObj = { ...pin, [e.target.name]: false };
       setPin(newObj);
       window.localStorage.setItem("pin", JSON.stringify(newObj));
-      console.log(`newObj: ${JSON.stringify(newObj)}`);
-      // console.log(pin);
-      console.log(`unchecked: ${e.target.name}`);
-      console.log(window.localStorage.getItem("pin"));
     }
   };
 

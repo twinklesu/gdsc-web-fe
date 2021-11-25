@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { COLORS } from "../../../components/Colors";
 import newIcon from "../../../assets/icon/new.png";
+import { boardCategoryIds } from "../../../components/boardCategoryId.js";
 
 // category: "자유게시판",
 // title: "기숙사 예비 받았는데",
@@ -33,7 +34,9 @@ const MyBoardItem = ({ board, index }) => {
   return (
     <BoardItemWrapper>
       <Link to={`board/list/${index + 1}`} className="my-board">
-        <h1 className="board-title">{board.category}</h1>
+        <h1 className="board-title">
+          {boardCategoryIds[board.board_category_id]}
+        </h1>
         <p className="board-content">{board.title}</p>
         <img className="new-icon" src={hasNewIcon} />
       </Link>

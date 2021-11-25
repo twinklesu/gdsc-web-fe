@@ -7,6 +7,8 @@ import likeIcon from "../../../assets/icon/like.png";
 import commentIcon from "../../../assets/icon/comment.png";
 import { COLORS } from "../../../components/Colors";
 
+import { boardCategoryIds } from "../../../components/boardCategoryId";
+
 const ContentWrapper = styled.div`
     display: block;
     margin-bottom: 20px;
@@ -80,32 +82,34 @@ const ContentWrapper = styled.div`
 // comments: 35,
 // like: 20,
 
-const RealTimeItem = ({content}) => {
-    const profileImg = content.profileUrl?"":noProfileImg;
-    return(
-        <ContentWrapper>
-            <Link>
-                <div className="popular-top">
-                    <div className="profile">
-                        <img src={profileImg} alt="프로필 이미지"/>
-                        <p className="nickname">{content.nick}</p>
-                    </div>
-                    <p className="date">{content.date}</p>
-                </div>
-                <h1>{content.title}</h1>
-                <p className="popular-content">{content.contents}</p>
-                <div className="popular-bottom">
-                    <p className="popular-category">{content.category}</p>
-                    <div className="popular-num">
-                        <img src={likeIcon}/>
-                        <p className="like-num">{content.like}</p>
-                        <img src={commentIcon}/>
-                        <p className="comments-num">{content.comments}</p>
-                    </div>
-                </div>
-            </Link>
-        </ContentWrapper>
-    );
+const RealTimeItem = ({ content }) => {
+  const profileImg = content.profileUrl ? "" : noProfileImg;
+  return (
+    <ContentWrapper>
+      <Link to={`/board/detail/${content.id}`}>
+        <div className="popular-top">
+          <div className="profile">
+            <img src={profileImg} alt="프로필 이미지" />
+            <p className="nickname">{content.nickname}</p>
+          </div>
+          <p className="date">{content.date}</p>
+        </div>
+        <h1>{content.title}</h1>
+        <p className="popular-content">{content.content}</p>
+        <div className="popular-bottom">
+          <p className="popular-category">
+            {boardCategoryIds[content.board_category_id]}
+          </p>
+          <div className="popular-num">
+            <img src={likeIcon} />
+            <p className="like-num">{content.like_num}</p>
+            <img src={commentIcon} />
+            <p className="comments-num">{content.comment_num}</p>
+          </div>
+        </div>
+      </Link>
+    </ContentWrapper>
+  );
 };
 
 export default RealTimeItem;
