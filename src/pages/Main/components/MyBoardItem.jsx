@@ -30,7 +30,6 @@ const BoardItemWrapper = styled.div`
 `;
 
 const MyBoardItem = ({ board, index }) => {
-  const hasNewIcon = board.isNew ? newIcon : "";
   return (
     <BoardItemWrapper>
       <Link to={`board/list/${index + 1}`} className="my-board">
@@ -38,7 +37,7 @@ const MyBoardItem = ({ board, index }) => {
           {boardCategoryIds[board.board_category_id]}
         </h1>
         <p className="board-content">{board.title}</p>
-        <img className="new-icon" src={hasNewIcon} />
+        {board.is_new && <img className="new-icon" src={newIcon} />}
       </Link>
     </BoardItemWrapper>
   );

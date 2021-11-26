@@ -6,6 +6,7 @@ import MessageBoxNavigation from "./components/MessageBoxNavigation";
 import MainNavigation from "./components/MainNavigation";
 import XvectorNavigation from "./components/XvectorNavigation";
 import ArrowNavigation from "./components/ArrowNavigation";
+import MessageNavigation from "./components/MessageNavigation";
 
 const NavigationWrapper = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const mapPageToNavi = {
   setting: <ArrowNavigation pageName="홈 화면 설정" back="/" />,
 };
 
-const TopNavigation = ({ activePage }) => {
+const TopNavigation = ({ activePage, id }) => {
   return <NavigationWrapper>{mapPageToNavi[activePage]}</NavigationWrapper>;
 };
 

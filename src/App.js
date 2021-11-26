@@ -17,6 +17,7 @@ import BoardCategory from "./pages/BoardCategory";
 import BoardDetail from "./pages/BoardDetail";
 import BoardPost from "./pages/BoardPost";
 import axios from "axios";
+import AlarmPost from "./pages/AlarmPost";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -38,7 +39,7 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/signup">
-          {isLogin ? <Redirect path="/" /> : <Main />}
+          {isLogin ? <Redirect path="/" /> : <Join />}
         </Route>
         <Route exact path="/login">
           {isLogin ? <Redirect path="/" /> : <LogIn />}
@@ -58,6 +59,7 @@ const App = () => {
 
             <Route exact path="/alarm" component={Alarm} />
             <Route exact path="/alarm/:no" component={MessageDetailWrapper} />
+            <Route exact path="/message/post/:id" component={AlarmPost} />
 
             <Route exact path="/mypage" component={MyPage} />
             <Route
