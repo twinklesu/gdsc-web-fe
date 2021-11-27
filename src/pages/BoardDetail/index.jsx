@@ -10,6 +10,7 @@ import sendIcon from "../../assets/icon/send.png";
 import axios from "axios";
 import { boardCategoryIds } from "../../components/boardCategoryId";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const MainWrapper = styled.div`
   .content-top {
@@ -57,6 +58,21 @@ const MainWrapper = styled.div`
       color: ${COLORS.grey_600};
       font-size: 12px;
     }
+    .message-btn {
+      background-color: ${COLORS.grey_300};
+      text-align: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border-radius: 8px;
+      color: ${COLORS.grey_600};
+      font-size: 12px;
+      margin-left: 5px;
+    }
+    .content-btn-wrapper {
+      display: flex;
+    }
 
     .comment-wrapper{
       margin-top: 30px;
@@ -88,6 +104,18 @@ const MainWrapper = styled.div`
             padding-top: 5px;
             padding-bottom: 5px;
             border-radius: 8px;
+            color: ${COLORS.grey_600};
+            font-size: 12px;
+          }
+          .comment-message-btn {
+            background-color: ${COLORS.grey_300};
+            text-align: center;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 8px;
+            margin-left: 5px;
             color: ${COLORS.grey_600};
             font-size: 12px;
           }
@@ -226,6 +254,7 @@ const Index = ({ match }) => {
     });
     if (commentResult.data.success) {
       setChangeState(!changeState);
+      setNewComment("");
     }
   };
 
@@ -252,6 +281,12 @@ const Index = ({ match }) => {
     fetchData();
   }, [changeState, match.params.id]);
 
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      onClickCommentPost();
+    }
+  };
+
   return (
     <MainWrapper isSecret={isSecret}>
       <BoardDetailTopNavigation
@@ -277,9 +312,17 @@ const Index = ({ match }) => {
         <img src={commentIcon} alt="댓글" />
         <p className="comments-num">{content.comment_num}</p>
       </div>
-      <button className="agree-btn" onClick={onClickPostAgreeBtn}>
-        공감
-      </button>
+      <div className="content-btn-wrapper">
+        <button className="agree-btn" onClick={onClickPostAgreeBtn}>
+          공감
+        </button>
+        <Link
+          className="message-btn"
+          to={`/message/post/${2}/${match.params.id}`}
+        >
+          쪽지
+        </Link>
+      </div>
       <div className="comment-wrapper">
         {comments.map((comment, index) => (
           <div className="comment-item">
@@ -292,12 +335,20 @@ const Index = ({ match }) => {
                 />
                 <p className="comment-nickname">{comment.nickname}</p>
               </div>
-              <button
-                className="comment-agree-btn"
-                onClick={() => onClickCommentAgreeBtn({ id: comment.id })}
-              >
-                공감
-              </button>
+              <div>
+                <button
+                  className="comment-agree-btn"
+                  onClick={() => onClickCommentAgreeBtn({ id: comment.id })}
+                >
+                  공감
+                </button>
+                <Link
+                  className="comment-message-btn"
+                  to={`/message/post/${0}/${comment.id}`}
+                >
+                  쪽지
+                </Link>
+              </div>
             </div>
             <p className="comment-content">{comment.content}</p>
             <div className="comment-bottom">
@@ -331,7 +382,9 @@ const Index = ({ match }) => {
               className="comment-input"
               placeholder="댓글을 입력하세요."
               type="text"
+              value={newComment}
               onChange={onChangeComment}
+              onKeyPress={onKeyPress}
             />
             <img src={sendIcon} alt="댓글 입력" onClick={onClickCommentPost} />
           </div>

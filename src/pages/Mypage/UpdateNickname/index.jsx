@@ -6,6 +6,9 @@ import MainButton from "../../../components/Button/MainButton";
 import MainInput from "../../../components/Input/MainInput";
 import { COLORS } from "../../../components/Colors";
 
+import axios from "axios";
+import { useHistory } from "react-router";
+
 const MainWrapper = styled.div`
   display: block;
   .title {
@@ -19,6 +22,7 @@ const MainWrapper = styled.div`
 `;
 
 const Index = () => {
+  let history = useHistory();
   const [nickname, setNickname] = useState("");
   const [isError, setIsError] = useState(false);
 
@@ -31,6 +35,26 @@ const Index = () => {
       setIsError(false);
     }
     setNickname(value);
+  };
+
+  const onClickSetting = () => {
+    isError ? alert("닉네임을 다시 입력하세요") : changeFunction();
+  };
+
+  const changeFunction = async () => {
+    const writeResult = await axios({
+      method: "PUT",
+      url: "/api/user",
+      data: {
+        nickname: nickname,
+      },
+    });
+    if (writeResult.data.success) {
+      // 성공
+      history.push("/mypage");
+    } else {
+      alert(`${writeResult.data.message}. (${writeResult.data.data.nickname})`);
+    }
   };
 
   return (
@@ -49,7 +73,7 @@ const Index = () => {
             <p className="input-warning">닉네임은 최소 두글자입니다</p>
           )}
         </div>
-        <MainButton text={"닉네임 설정"} onClick={() => alert("닉네임 설정")} />
+        <MainButton text={"닉네임 설정"} onClick={onClickSetting} />
       </div>
     </MainWrapper>
   );

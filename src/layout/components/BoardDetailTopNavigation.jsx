@@ -6,6 +6,8 @@ import arrowImg from "../../assets/vector/arrow.svg";
 import { COLORS } from "../../components/Colors";
 import searchImg from "../../assets/nav/search.svg";
 
+import { useHistory } from "react-router";
+
 const NavigationWrapper = styled.div`
   display: flex;
   height: 55px;
@@ -37,11 +39,12 @@ const NavigationWrapper = styled.div`
 `;
 
 const BoardDetailTopNavigation = ({ title, back, categoryId }) => {
+  let history = useHistory();
   return (
     <NavigationWrapper>
-      <Link className="back" to={back}>
+      <button className="back" onClick={() => history.goBack()}>
         <img className="back-img" src={arrowImg} alt="뒤로가기" />
-      </Link>
+      </button>
       <div className="title">
         <h1>{title}</h1>
         <h2>GDSC</h2>

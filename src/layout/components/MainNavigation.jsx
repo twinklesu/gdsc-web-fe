@@ -41,7 +41,7 @@ const MainNavigation = () => {
       <div className="main-nav">
         <p className="school-name">GDSC 웹</p>
         <div className="icon-wrapper">
-          <Link className="search" to="/search">
+          <Link className="search" to="/search/0">
             <img src={searchImg} />
           </Link>
           <Link className="myPage" to="/mypage">

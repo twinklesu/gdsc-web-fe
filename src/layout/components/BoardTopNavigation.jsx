@@ -52,7 +52,7 @@ const BoardTopNavigation = ({ title, back, categoryId }) => {
         <h1>{title}</h1>
         <h2>GDSC</h2>
       </div>
-      <Link className="search" to="">
+      <Link className="search" to={`/search/${categoryId}`}>
         <img className="search-img" src={searchImg} alt="검색" />
       </Link>
     </NavigationWrapper>

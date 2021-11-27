@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { COLORS } from "../../../components/Colors";
+import axios from "axios";
 
 const quitModalStyle = {
   content: {
@@ -43,6 +44,18 @@ const QuitModal = ({ text }) => {
     setIsOpen(true);
   };
 
+  const onClickOk = async () => {
+    const writeResult = await axios({
+      method: "DELETE",
+      url: "/api/user",
+      data: {},
+    });
+    if (writeResult.data.success) {
+      // 성공
+      window.location.reload();
+    }
+  };
+
   return (
     <div>
       <button onClick={openModal}>{text}</button>
@@ -60,7 +73,7 @@ const QuitModal = ({ text }) => {
           </p>
           <div className="quit-choice">
             <button onClick={() => setIsOpen(false)}>취소</button>
-            <button onClick={() => alert("탈퇴")}>확인</button>
+            <button onClick={onClickOk}>확인</button>
           </div>
         </ModalContent>
       </Modal>

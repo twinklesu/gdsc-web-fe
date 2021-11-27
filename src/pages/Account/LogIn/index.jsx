@@ -74,6 +74,10 @@ const CheckInput = () => {
     }
   };
 
+  const onEnterPress = (e) => {
+    e.key === "Enter" && onClickLoginBtn();
+  };
+
   return (
     <div>
       <div>
@@ -87,6 +91,7 @@ const CheckInput = () => {
         onChange={onChangeId}
         handleFocus={handleFocus}
         placeholder="아이디"
+        onKeyPress={onEnterPress}
       />
       <MainInput
         type="password"
@@ -94,6 +99,7 @@ const CheckInput = () => {
         onChange={onChangePw}
         handleFocus={handleFocus}
         placeholder="비밀번호"
+        onKeyPress={onEnterPress}
       />
       <MainButton text={"에브리타임 로그인"} onClick={onClickLoginBtn} />
       {!isInput && (

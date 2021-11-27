@@ -1,4 +1,5 @@
 export const boardCategoryIds = {
+  0: "전체게시판",
   1: "자유게시판",
   2: "비밀게시판",
   3: "졸업생게시판",

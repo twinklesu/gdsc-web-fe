@@ -140,7 +140,7 @@ const Index = ({ match }) => {
     return (
       <NavigationWrapper>
         <div className="title-wrapper">
-          <Link to={`board/list/${match.params.category}`}>
+          <Link to={`/board/list/${match.params.category}`}>
             <img src={xVector} alt="닫기" />
           </Link>
           <h1>글 쓰기</h1>

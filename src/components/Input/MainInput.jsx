@@ -21,7 +21,14 @@ const CustomInput = styled.input`
   }
 `;
 
-const MainInput = ({ value, type, onChange, handleFocus, placeholder }) => {
+const MainInput = ({
+  value,
+  type,
+  onChange,
+  handleFocus,
+  placeholder,
+  onKeyPress,
+}) => {
   return (
     <CustomInput
       value={value}
@@ -31,6 +38,7 @@ const MainInput = ({ value, type, onChange, handleFocus, placeholder }) => {
       onFocus={handleFocus} // 그 창이 focus 갖은 경우
       placeholder={placeholder}
       spellCheck={false}
+      onKeyPress={onKeyPress}
     />
   );
 };

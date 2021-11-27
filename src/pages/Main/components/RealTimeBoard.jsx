@@ -18,14 +18,18 @@ const BoardWrapper = styled.div`
 
 const RealTimeBoard = ({ contents }) => {
   return (
-    <BoardWrapper className="board-wrapper">
-      <h1 className="title">실시간 인기 글</h1>
-      <div>
-        {contents.map((content, index) => (
-          <RealTimeItem content={content} />
-        ))}
-      </div>
-    </BoardWrapper>
+    <div>
+      {contents.length > 0 && (
+        <BoardWrapper className="board-wrapper">
+          <h1 className="title">실시간 인기 글</h1>
+          <div>
+            {contents.map((content, index) => (
+              <RealTimeItem content={content} />
+            ))}
+          </div>
+        </BoardWrapper>
+      )}
+    </div>
   );
 };
 

@@ -25,6 +25,7 @@ const mapPageToNavi = {
   updateNick: <XvectorNavigation pageName="닉네임 변경" back="/mypage" />,
   authDetail: <XvectorNavigation pageName="이메일 인증" back="/mypage" />,
   setting: <ArrowNavigation pageName="홈 화면 설정" back="/" />,
+  search: <ArrowNavigation pageName="게시글 검색" />,
 };
 
 const TopNavigation = ({ activePage, id }) => {

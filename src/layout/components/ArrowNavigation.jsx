@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../../components/Colors";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 import arrowImg from "../../assets/vector/arrow.svg";
 
@@ -23,11 +24,12 @@ const NavWrapper = styled.div`
 `;
 
 const ArrowNavigation = ({ pageName, back }) => {
+  let history = useHistory();
   return (
     <NavWrapper>
-      <Link className="back" to={back}>
+      <button className="back" onClick={() => history.goBack()}>
         <img src={arrowImg} alt="뒤로가기" />
-      </Link>
+      </button>
       <p>{pageName}</p>
     </NavWrapper>
   );

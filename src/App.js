@@ -18,6 +18,7 @@ import BoardDetail from "./pages/BoardDetail";
 import BoardPost from "./pages/BoardPost";
 import axios from "axios";
 import AlarmPost from "./pages/AlarmPost";
+import Search from "./pages/Search";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -59,7 +60,11 @@ const App = () => {
 
             <Route exact path="/alarm" component={Alarm} />
             <Route exact path="/alarm/:no" component={MessageDetailWrapper} />
-            <Route exact path="/message/post/:id" component={AlarmPost} />
+            <Route
+              exact
+              path="/message/post/:group/:id"
+              component={AlarmPost}
+            />
 
             <Route exact path="/mypage" component={MyPage} />
             <Route
@@ -71,6 +76,7 @@ const App = () => {
             <Route exact path="/mypage/auth/detail" component={AuthDetail} />
 
             <Route exact path="/setting" component={Setting} />
+            <Route exact path="/search/:category" component={Search} />
           </Switch>
         ) : (
           <Redirect to="/login" />

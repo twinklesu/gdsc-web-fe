@@ -43,7 +43,7 @@ const MessageNavigation = ({ id }) => {
         <img src={arrowImg} alt="뒤로가기" />
       </Link>
       <p>익명</p>
-      <Link className="send" to={`/message/post/${id}`}>
+      <Link className="send" to={`/message/post/${1}/${id}`}>
         <img src={sendImg} alt="메세지 보내기" />
       </Link>
     </NavWrapper>
